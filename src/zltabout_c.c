@@ -28,19 +28,47 @@
 
 /**
  * @file	zltabout_c.c
- * @brief	[source file] zltabout for C (C语言版的zltabout) .
+ * @brief	[source file] zltabout: C mode (C模式的zltabout) .
  * @since	@ref GROUP_ZLTABOUT 1.0
  */
 
-#include <stdio.h>
-#include <wchar.h>
+#include <stddef.h>
 
-#include "auto_tchar.h"
-#include "prichar.h"
+#include "zltabout_c.h"
 
-#define ZLTABOUTMODE	1	// ZLTABOUTMODE_C
-#include "zltabout.h"
+void zltabout_c_outvfA(ZLTOUTTYPEA sout, int indent, const char* fmt, va_list argptr) {
+	int i;
+	for(i=0; i<indent; ++i) {
+		fputc('\t', sout);
+	}
+	if (NULL!=fmt) {
+		vfprintf(sout, fmt, argptr);
+	}
+}
 
+void zltabout_c_outvfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, va_list argptr) {
+	int i;
+	for(i=0; i<indent; ++i) {
+		fputwc(L'\t', sout);
+	}
+	if (NULL!=fmt) {
+		vfwprintf(sout, fmt, argptr);
+	}
+}
+
+void zltabout_c_outfA(ZLTOUTTYPEA sout, int indent, const char* fmt, ...) {
+	va_list argptr;
+	va_start(argptr, fmt);
+	zltabout_c_outvfA(sout, indent, fmt, argptr);
+	va_end(argptr);
+}
+
+void zltabout_c_outfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, ...) {
+	va_list argptr;
+	va_start(argptr, fmt);
+	zltabout_c_outvfW(sout, indent, fmt, argptr);
+	va_end(argptr);
+}
 
 /** @} */	// @addtogroup GROUP_ZLTABOUT
 /** @} */	// @addtogroup GROUP_ZYLLIBC

@@ -61,8 +61,8 @@
 
 /**
  * @file	zltabout_test.c
- * @brief	Test @ref GROUP_TCHARALL using UTF-8 encoding source file (测试各种编译器使用tchar，源文件使用UTF-8编码).
- * @since	@ref GROUP_TCHARALL 1.0
+ * @brief	Test @ref GROUP_ZLTABOUT for C (测试C下使用 @ref GROUP_ZLTABOUT).
+ * @since	@ref GROUP_ZLTABOUT 1.0
  */
 
 
@@ -81,15 +81,18 @@
 /// main .
 int _tmain(int argc, TCHAR* argv[])
 {
+	ZLTOUTTYPE sout;
+
 	// init.
 	setlocale(LC_ALL, "");	// 使用客户环境的缺省locale.
 
-	// title.
-	_tprintf(_T("zltabout_test v1.0 (%dbit)\n"), (int)(8*sizeof(int*)));
-	_tprintf(_T("\n"));
-
 	// show.
-	
+	sout = (ZLTOUTTYPE)stdout;
+	ZLTOUTF(sout, 0, _T("indent 0\n"));
+	ZLTOUTF(sout, 1, _T("indent 1\n"));
+	ZLTOUTF(sout, 2, _T("indent 2\n"));
+	ZLTOUTC(sout, _T('Z'));
+	ZLTOUTC(sout, _T('\n'));
 
 	return 0;
 }

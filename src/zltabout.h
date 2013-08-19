@@ -23,7 +23,7 @@
  */
 
 /** @addtogroup GROUP_ZLTABOUT	zltabout
- * Formatting output with indentation (带缩进的格式化输出) .
+ * Formatted output with indentation (带缩进的格式化输出) .
  *
  * @author	[zyl910](mailto:zyl910hero@gmail.com)
  * @version	1.0
@@ -116,24 +116,27 @@
 #define ZLTABOUTMODE_C	1	//!< C mode (C模式). FILE* .
 #define ZLTABOUTMODE_CPP	2	//!< C++ mode (C++模式). stream . 
 
-#ifndef ZLTABOUTMODE
-/** Output Mode (输出模式).
+/** @def ZLTABOUTMODE
+ * Output Mode (输出模式).
  *
  * Default value is @ref ZLTABOUTMODE_DUMMY (若该宏没有定义，则自动设为默认值 @ref ZLTABOUTMODE_DUMMY ).
  *
  * @see ZLTABOUTMODE_DUMMY, ZLTABOUTMODE_C, ZLTABOUTMODE_CPP
  */
+#ifndef ZLTABOUTMODE
 #define ZLTABOUTMODE	ZLTABOUTMODE_DUMMY
 #endif
 
-// == Mode choice (模式选择) ==
+
+// == Mode mapping (模式映射) ==
+
 #if ZLTABOUTMODE==ZLTABOUTMODE_DUMMY
 	#define ZLTOUTTYPEA	void*
 	#define ZLTOUTTYPEW	void*
 	#define ZLTOUTCA(sout, ch)
 	#define ZLTOUTCW(sout, ch)
-	#define ZLTOUTFVA(sout, fmt, argptr)
-	#define ZLTOUTFVW(sout, fmt, argptr)
+	#define ZLTOUTVFA(sout, indent, fmt, argptr)
+	#define ZLTOUTVFW(sout, indent, fmt, argptr)
 	#define ZLTOUTFA(args)
 	#define ZLTOUTFW(args)
 #elif ZLTABOUTMODE==ZLTABOUTMODE_C
@@ -146,18 +149,133 @@
 	#endif	// #ifdef ZLTABOUT_OTHER_MODE
 #endif	// #if ZLTABOUTMODE==ZLTABOUTMODE_DUMMY
 
+/** @def ZLTOUTTYPEA
+ * Narrow output stream's type (窄输出流的类型).
+ *
+ * @see ZLTOUTTYPE, ZLTOUTTYPEW
+ */
+
+/** @def ZLTOUTTYPEW
+ * Wide output stream's type (宽输出流的类型).
+ *
+ * @see ZLTOUTTYPE, ZLTOUTTYPEA
+ */
+
+/** @def ZLTOUTCA
+ * Writes a narrow character to a stream (向流输出一个窄字符).
+ *
+ * @param[in]	sout	Output stream (输出流).
+ * @param[in]	ch	character (字符).
+ *
+ * @see ZLTOUTC, ZLTOUTCW
+ */
+
+/** @def ZLTOUTCW
+ * Writes a wide character to a stream (向流输出一个宽字符).
+ *
+ * @param[in]	sout	Output stream (输出流).
+ * @param[in]	ch	character (字符).
+ *
+ * @see ZLTOUTC, ZLTOUTCA
+ */
+
+/** @def ZLTOUTVFA
+ * Formatted output with indentation using a pointer to a list of arguments (参数列表指针形式的带缩进格式化输出窄字符串版).
+ *
+ * @param[in]	sout	Output stream (输出流).
+ * @param[in]	indent	Indent (缩进).
+ * @param[in]	fmt	Format specification (格式化串).
+ * @param[in]	argptr	Pointer to list of arguments (参数列表指针).
+ *
+ * @see ZLTOUTVF, ZLTOUTVFW
+ */
+
+/** @def ZLTOUTVFW
+ * Formatted output with indentation using a pointer to a list of arguments (参数列表指针形式的带缩进格式化输出宽字符串版).
+ *
+ * @param[in]	sout	Output stream (输出流).
+ * @param[in]	indent	Indent (缩进).
+ * @param[in]	fmt	Format specification (格式化串).
+ * @param[in]	argptr	Pointer to list of arguments (参数列表指针).
+ *
+ * @see ZLTOUTVF, ZLTOUTVFA
+ */
+
+/** @def ZLTOUTFA
+ * Formatted output with indentation (带缩进格式化输出窄字符串版).
+ *
+ * Prototype: `void zltoutfA(ZLTOUTTYPEA sout, int indent, const char* fmt, ...);`
+ *
+ * @param[in]	sout	Output stream (输出流).
+ * @param[in]	indent	Indent (缩进).
+ * @param[in]	fmt	Format specification (格式化串).
+ *
+ * @see ZLTOUTF, ZLTOUTFW
+ */
+
+/** @def ZLTOUTFW
+ * Formatted output with indentation (带缩进格式化输出宽字符串版).
+ *
+ * Prototype: `void zltoutfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, ...);`
+ *
+ * @param[in]	sout	Output stream (输出流).
+ * @param[in]	indent	Indent (缩进).
+ * @param[in]	fmt	Format specification (格式化串).
+ *
+ * @see ZLTOUTF, ZLTOUTFA
+ */
+
+
 // == TCHAR marco ==
 #ifdef UNICODE
 	#define ZLTOUTTYPE	ZLTOUTTYPEW
 	#define ZLTOUTC(sout, ch)	ZLTOUTCW(sout, ch)
-	#define ZLTOUTFV(sout, indent, fmt, argptr)	ZLTOUTFVW(sout, fmt, argptr)
+	#define ZLTOUTVF(sout, indent, fmt, argptr)	ZLTOUTVFW(sout, fmt, argptr)
 	#define ZLTOUTF	ZLTOUTFW
 #else	// #ifdef UNICODE
 	#define ZLTOUTTYPE	ZLTOUTTYPEA
 	#define ZLTOUTC(sout, ch)	ZLTOUTCA(sout, ch)
-	#define ZLTOUTFV(sout, indent, fmt, argptr)	ZLTOUTFVA(sout, fmt, argptr)
+	#define ZLTOUTVF(sout, indent, fmt, argptr)	ZLTOUTVFA(sout, fmt, argptr)
 	#define ZLTOUTF	ZLTOUTFA
 #endif	// #ifdef UNICODE
+
+/** @def ZLTOUTTYPE
+ * Output stream's type (输出流的类型).
+ *
+ * @see ZLTOUTTYPEA, ZLTOUTTYPEW
+ */
+
+/** @def ZLTOUTC
+ * Writes a character to a stream (向流输出一个字符).
+ *
+ * @param[in]	sout	Output stream (输出流).
+ * @param[in]	ch	character (字符).
+ *
+ * @see ZLTOUTCA, ZLTOUTCW
+ */
+
+/** @def ZLTOUTVF
+ * Formatted output with indentation using a pointer to a list of arguments (参数列表指针形式的带缩进格式化输出).
+ *
+ * @param[in]	sout	Output stream (输出流).
+ * @param[in]	indent	Indent (缩进).
+ * @param[in]	fmt	Format specification (格式化串).
+ * @param[in]	argptr	Pointer to list of arguments (参数列表指针).
+ *
+ * @see ZLTOUTVFA, ZLTOUTVFW
+ */
+
+/** @def ZLTOUTF
+ * Formatted output with indentation (带缩进格式化输出).
+ *
+ * Prototype: `void zltoutf(ZLTOUTTYPE sout, int indent, const TCHAR* fmt, ...);`
+ *
+ * @param[in]	sout	Output stream (输出流).
+ * @param[in]	indent	Indent (缩进).
+ * @param[in]	fmt	Format specification (格式化串).
+ *
+ * @see ZLTOUTFA, ZLTOUTFW
+ */
 
 #endif // #ifndef __ZLTABOUT_H_INCLUDED
 
