@@ -20,7 +20,9 @@
 *.obj
 *.tds
 
-/examples/zltabout_test/Debug
-/examples/zltabout_test/zltabout_test_2005.vcproj.*.user
+*_2005.vcproj.*.user
+
 /docs/html
+/examples/zltabout_test/Debug
+/examples/zltabout_testcpp/Debug
 
