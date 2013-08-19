@@ -11,3 +11,9 @@
 *.lai
 *.la
 *.a
+
+*.ncb
+*.suo
+
+/examples/zltabout_test/Debug
+/examples/zltabout_test/zltabout_test_2005.vcproj.*.user
