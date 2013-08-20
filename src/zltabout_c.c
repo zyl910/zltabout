@@ -36,8 +36,25 @@
 
 #include "zltabout_c.h"
 
+void zltabout_c_outsA(ZLTOUTTYPEA sout, const char* str, size_t cch) {
+	size_t i;
+	if (NULL==sout) return;
+	for(i=0; i<cch; ++i) {
+		zltabout_c_outcA(sout, str[i]);
+	}
+}
+
+void zltabout_c_outsW(ZLTOUTTYPEW sout, const wchar_t* str, size_t cch) {
+	size_t i;
+	if (NULL==sout) return;
+	for(i=0; i<cch; ++i) {
+		zltabout_c_outcW(sout, str[i]);
+	}
+}
+
 void zltabout_c_outvfA(ZLTOUTTYPEA sout, int indent, const char* fmt, va_list argptr) {
 	int i;
+	if (NULL==sout) return;
 	for(i=0; i<indent; ++i) {
 		fputc('\t', sout);
 	}
@@ -48,6 +65,7 @@ void zltabout_c_outvfA(ZLTOUTTYPEA sout, int indent, const char* fmt, va_list ar
 
 void zltabout_c_outvfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, va_list argptr) {
 	int i;
+	if (NULL==sout) return;
 	for(i=0; i<indent; ++i) {
 		fputwc(L'\t', sout);
 	}
@@ -58,6 +76,7 @@ void zltabout_c_outvfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, va_list
 
 void zltabout_c_outfA(ZLTOUTTYPEA sout, int indent, const char* fmt, ...) {
 	va_list argptr;
+	if (NULL==sout) return;
 	va_start(argptr, fmt);
 	zltabout_c_outvfA(sout, indent, fmt, argptr);
 	va_end(argptr);
@@ -65,6 +84,7 @@ void zltabout_c_outfA(ZLTOUTTYPEA sout, int indent, const char* fmt, ...) {
 
 void zltabout_c_outfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, ...) {
 	va_list argptr;
+	if (NULL==sout) return;
 	va_start(argptr, fmt);
 	zltabout_c_outvfW(sout, indent, fmt, argptr);
 	va_end(argptr);

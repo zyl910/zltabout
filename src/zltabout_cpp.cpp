@@ -71,6 +71,16 @@ wint_t zltabout_cpp_outcW(ZLTOUTTYPEW sout, wchar_t ch) {
 	return rt;
 }
 
+void zltabout_cpp_outsA(ZLTOUTTYPEA sout, const char* str, size_t cch) {
+	if (NULL==sout) return;
+	sout->write(str, (std::streamsize)cch);
+}
+
+void zltabout_cpp_outsW(ZLTOUTTYPEW sout, const wchar_t* str, size_t cch) {
+	if (NULL==sout) return;
+	sout->write(str, (std::streamsize)cch);
+}
+
 /// [Core] Formatted output narrow string (格式化窄字符串并输出).
 static void zltabout_cpp_outvfA_coreformat(ZLTOUTTYPEA sout, const char* fmt, va_list argptr) {
 	char buf[ZLTABOUT_CPP_BUFSIZE];
@@ -163,6 +173,7 @@ void zltabout_cpp_outvfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, va_li
 
 void zltabout_cpp_outfA(ZLTOUTTYPEA sout, int indent, const char* fmt, ...) {
 	va_list argptr;
+	if (NULL==sout) return;
 	va_start(argptr, fmt);
 	zltabout_cpp_outvfA(sout, indent, fmt, argptr);
 	va_end(argptr);
@@ -170,6 +181,7 @@ void zltabout_cpp_outfA(ZLTOUTTYPEA sout, int indent, const char* fmt, ...) {
 
 void zltabout_cpp_outfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, ...) {
 	va_list argptr;
+	if (NULL==sout) return;
 	va_start(argptr, fmt);
 	zltabout_cpp_outvfW(sout, indent, fmt, argptr);
 	va_end(argptr);

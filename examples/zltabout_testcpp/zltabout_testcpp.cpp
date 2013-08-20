@@ -69,11 +69,9 @@
 #include <sstream>
 
 #include <stdio.h>
-#include <locale.h>
 #include <wchar.h>
 
 #include "auto_tchar.h"
-#include "prichar.h"
 #include "auto_tmain.h"
 
 //#define ZLTABOUTMODE	1	// ZLTABOUTMODE_C
@@ -89,15 +87,16 @@ using namespace std;
  * * 2: Test stringstream/wstringstream .
  *
  */
-#define TESTCPPMODE	2
+#define MYTESTMODE	2
 
 /// Do Test.
 void dotest(ZLTOUTTYPE sout, int indent) {
+	static const TCHAR strEnd[] = _T("(END)");
 	int i;
 	for(i=0; i<3; ++i) {
 		ZLTOUTF(sout, indent+i, _T("indent %d\n"), i);
 	}
-	ZLTOUTC(sout, _T('Z'));
+	ZLTOUTS(sout, strEnd, sizeof(strEnd)/sizeof(strEnd[0])-1);
 	ZLTOUTC(sout, _T('\n'));
 }
 
@@ -106,29 +105,22 @@ int _tmain(int argc, TCHAR* argv[])
 {
 	ZLTOUTTYPE sout;
 
-	// init.
-	setlocale(LC_ALL, "");	// 使用客户环境的缺省locale.
-
 	// show.
 #if ZLTABOUTMODE==ZLTABOUTMODE_DUMMY
 	sout = (ZLTOUTTYPE)NULL;
 #elif ZLTABOUTMODE==ZLTABOUTMODE_C
 	sout = (ZLTOUTTYPE)stdout;
 #elif ZLTABOUTMODE==ZLTABOUTMODE_CPP
-	#if (TESTCPPMODE==1)
+	#if (MYTESTMODE==1)
 		// test cout/wcout .
 		#ifdef UNICODE
 			sout = dynamic_cast<ZLTOUTTYPEW>(&wcout);
 		#else
 			sout = dynamic_cast<ZLTOUTTYPEA>(&cout);
 		#endif
-	#elif (TESTCPPMODE==2)
+	#elif (MYTESTMODE==2)
 		// test stringstream/wstringstream .
-		#ifdef UNICODE
-			wstringstream ss;
-		#else
-			stringstream ss;
-		#endif
+		basic_stringstream<TCHAR> ss;
 		sout = dynamic_cast<ZLTOUTTYPE>(&ss);
 	#endif
 #else
@@ -136,7 +128,7 @@ int _tmain(int argc, TCHAR* argv[])
 #endif
 	dotest(sout, 0);
 
-	#if (TESTCPPMODE==2)
+	#if (ZLTABOUTMODE==ZLTABOUTMODE_CPP) && (MYTESTMODE==2)
 		// test stringstream/wstringstream part 2.
 		basic_string<TCHAR> str = ss.str();
 		#ifdef UNICODE

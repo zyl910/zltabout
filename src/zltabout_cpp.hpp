@@ -48,6 +48,8 @@ extern "C" {
 
 #define ZLTOUTCA(sout, ch)	zltabout_cpp_outcA(sout, ch)
 #define ZLTOUTCW(sout, ch)	zltabout_cpp_outcW(sout, ch)
+#define ZLTOUTSA(sout, str, cch)	zltabout_cpp_outsA(sout, str, cch)
+#define ZLTOUTSW(sout, str, cch)	zltabout_cpp_outsW(sout, str, cch)
 #define ZLTOUTVFA(sout, indent, fmt, argptr)	zltabout_cpp_outvfA(sout, indent, fmt, argptr)
 #define ZLTOUTVFW(sout, indent, fmt, argptr)	zltabout_cpp_outvfW(sout, indent, fmt, argptr)
 #define ZLTOUTFA	zltabout_cpp_outfA
@@ -56,7 +58,7 @@ extern "C" {
 /** Writes a narrow character to a stream (向流输出一个窄字符).
  *
  * @param[in]	sout	Output stream (输出流).
- * @param[in]	ch	character (字符).
+ * @param[in]	ch	Character (字符).
  * @return	Each of these functions returns the character written. A return value of EOF indicates an error.
  *
  */
@@ -65,11 +67,29 @@ extern int zltabout_cpp_outcA(ZLTOUTTYPEA sout, char ch);
 /** Writes a wide character to a stream (向流输出一个宽字符).
  *
  * @param[in]	sout	Output stream (输出流).
- * @param[in]	ch	character (字符).
+ * @param[in]	ch	Character (字符).
  * @return	Each of these functions returns the character written. A return value of WEOF indicates an error.
  *
  */
 extern wint_t zltabout_cpp_outcW(ZLTOUTTYPEW sout, wchar_t ch);
+
+/** Write a narrow string to a stream (向流输出窄字符串).
+ *
+ * @param[in]	sout	Output stream (输出流).
+ * @param[in]	str	Output string (输出字符串).
+ * @param[in]	cch	Count of characters (字符数).
+ *
+ */
+extern void zltabout_cpp_outsA(ZLTOUTTYPEA sout, const char* str, size_t cch);
+
+/** Write a wide string to a stream (向流输出宽字符串).
+ *
+ * @param[in]	sout	Output stream (输出流).
+ * @param[in]	str	Output string (输出字符串).
+ * @param[in]	cch	Count of characters (字符数).
+ *
+ */
+extern void zltabout_cpp_outsW(ZLTOUTTYPEW sout, const wchar_t* str, size_t cch);
 
 /** Formatted output with indentation using a pointer to a list of arguments (参数列表指针形式的带缩进格式化输出窄字符串版).
  *

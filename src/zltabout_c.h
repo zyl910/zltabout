@@ -49,6 +49,8 @@ extern "C" {
 
 #define ZLTOUTCA(sout, ch)	zltabout_c_outcA(sout, ch)
 #define ZLTOUTCW(sout, ch)	zltabout_c_outcW(sout, ch)
+#define ZLTOUTSA(sout, str, cch)	zltabout_c_outsA(sout, str, cch)
+#define ZLTOUTSW(sout, str, cch)	zltabout_c_outsW(sout, str, cch)
 #define ZLTOUTVFA(sout, indent, fmt, argptr)	zltabout_c_outvfA(sout, indent, fmt, argptr)
 #define ZLTOUTVFW(sout, indent, fmt, argptr)	zltabout_c_outvfW(sout, indent, fmt, argptr)
 #define ZLTOUTFA	zltabout_c_outfA
@@ -71,6 +73,24 @@ extern "C" {
  *
  */
 #define zltabout_c_outcW(sout, ch)	fputwc(ch, sout)
+
+/** Write a narrow string to a stream (向流输出窄字符串).
+ *
+ * @param[in]	sout	Output stream (输出流).
+ * @param[in]	str	Output string (输出字符串).
+ * @param[in]	cch	Count of characters (字符数).
+ *
+ */
+extern void zltabout_c_outsA(ZLTOUTTYPEA sout, const char* str, size_t cch);
+
+/** Write a wide string to a stream (向流输出宽字符串).
+ *
+ * @param[in]	sout	Output stream (输出流).
+ * @param[in]	str	Output string (输出字符串).
+ * @param[in]	cch	Count of characters (字符数).
+ *
+ */
+extern void zltabout_c_outsW(ZLTOUTTYPEW sout, const wchar_t* str, size_t cch);
 
 /** Formatted output with indentation using a pointer to a list of arguments (参数列表指针形式的带缩进格式化输出窄字符串版).
  *

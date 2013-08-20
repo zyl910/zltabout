@@ -67,11 +67,9 @@
 
 
 #include <stdio.h>
-#include <locale.h>
 #include <wchar.h>
 
 #include "auto_tchar.h"
-#include "prichar.h"
 #include "auto_tmain.h"
 
 #define ZLTABOUTMODE	1	// ZLTABOUTMODE_C
@@ -82,16 +80,15 @@
 int _tmain(int argc, TCHAR* argv[])
 {
 	ZLTOUTTYPE sout;
-
-	// init.
-	setlocale(LC_ALL, "");	// 使用客户环境的缺省locale.
+	static const TCHAR strEnd[] = _T("(END)");
+	int i;
 
 	// show.
 	sout = (ZLTOUTTYPE)stdout;
-	ZLTOUTF(sout, 0, _T("indent 0\n"));
-	ZLTOUTF(sout, 1, _T("indent 1\n"));
-	ZLTOUTF(sout, 2, _T("indent 2\n"));
-	ZLTOUTC(sout, _T('Z'));
+	for(i=0; i<3; ++i) {
+		ZLTOUTF(sout, i, _T("indent %d\n"), i);
+	}
+	ZLTOUTS(sout, strEnd, sizeof(strEnd)/sizeof(strEnd[0])-1);
 	ZLTOUTC(sout, _T('\n'));
 
 	return 0;

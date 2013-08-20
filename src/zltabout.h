@@ -135,6 +135,8 @@
 	#define ZLTOUTTYPEW	void*
 	#define ZLTOUTCA(sout, ch)
 	#define ZLTOUTCW(sout, ch)
+	#define ZLTOUTSA(sout, str, cch)
+	#define ZLTOUTSW(sout, str, cch)
 	#define ZLTOUTVFA(sout, indent, fmt, argptr)
 	#define ZLTOUTVFW(sout, indent, fmt, argptr)
 	#define ZLTOUTFA(args)
@@ -167,7 +169,7 @@
  * Prototype: `int zltoutcA(ZLTOUTTYPEA sout, char ch);`
  *
  * @param[in]	sout	Output stream (输出流).
- * @param[in]	ch	character (字符).
+ * @param[in]	ch	Character (字符).
  * @return	Each of these functions returns the character written. A return value of EOF indicates an error.
  *
  * @see ZLTOUTC, ZLTOUTCW
@@ -179,10 +181,34 @@
  * Prototype: `wint_t zltoutcW(ZLTOUTTYPEW sout, wchar_t ch);`
  *
  * @param[in]	sout	Output stream (输出流).
- * @param[in]	ch	character (字符).
+ * @param[in]	ch	Character (字符).
  * @return	Each of these functions returns the character written. A return value of WEOF indicates an error.
  *
  * @see ZLTOUTC, ZLTOUTCA
+ */
+
+/** @def ZLTOUTSA
+ * Write a narrow string to a stream (向流输出窄字符串).
+ *
+ * Prototype: `void zltoutsA(ZLTOUTTYPEA sout, const char* str, size_t cch);`
+ *
+ * @param[in]	sout	Output stream (输出流).
+ * @param[in]	str	Output string (输出字符串).
+ * @param[in]	cch	Count of characters (字符数).
+ *
+ * @see ZLTOUTS, ZLTOUTSW
+ */
+
+/** @def ZLTOUTSW
+ * Write a wide string to a stream (向流输出宽字符串).
+ *
+ * Prototype: `void zltoutsW(ZLTOUTTYPEW sout, const wchar_t* str, size_t cch);`
+ *
+ * @param[in]	sout	Output stream (输出流).
+ * @param[in]	str	Output string (输出字符串).
+ * @param[in]	cch	Count of characters (字符数).
+ *
+ * @see ZLTOUTS, ZLTOUTSA
  */
 
 /** @def ZLTOUTVFA
@@ -240,11 +266,13 @@
 #ifdef UNICODE
 	#define ZLTOUTTYPE	ZLTOUTTYPEW
 	#define ZLTOUTC(sout, ch)	ZLTOUTCW(sout, ch)
+	#define ZLTOUTS(sout, str, cch)	ZLTOUTSW(sout, str, cch)
 	#define ZLTOUTVF(sout, indent, fmt, argptr)	ZLTOUTVFW(sout, fmt, argptr)
 	#define ZLTOUTF	ZLTOUTFW
 #else	// #ifdef UNICODE
 	#define ZLTOUTTYPE	ZLTOUTTYPEA
 	#define ZLTOUTC(sout, ch)	ZLTOUTCA(sout, ch)
+	#define ZLTOUTS(sout, str, cch)	ZLTOUTSA(sout, str, cch)
 	#define ZLTOUTVF(sout, indent, fmt, argptr)	ZLTOUTVFA(sout, fmt, argptr)
 	#define ZLTOUTF	ZLTOUTFA
 #endif	// #ifdef UNICODE
@@ -258,14 +286,31 @@
 /** @def ZLTOUTC
  * Writes a character to a stream (向流输出一个字符).
  *
+ * Prototype: `int zltoutc(ZLTOUTTYPE sout, TCHAR ch);`
+ *
  * @param[in]	sout	Output stream (输出流).
- * @param[in]	ch	character (字符).
+ * @param[in]	ch	Character (字符).
+ * @return	Each of these functions returns the character written. A return value of EOF/WEOF indicates an error.
  *
  * @see ZLTOUTCA, ZLTOUTCW
  */
 
+/** @def ZLTOUTS
+ * Write a string to a stream (向流输出字符串).
+ *
+ * Prototype: `void zltouts(ZLTOUTTYPE sout, const TCHAR* str, size_t cch);`
+ *
+ * @param[in]	sout	Output stream (输出流).
+ * @param[in]	str	Output string (输出字符串).
+ * @param[in]	cch	Count of characters (字符数).
+ *
+ * @see ZLTOUTSA, ZLTOUTSW
+ */
+
 /** @def ZLTOUTVF
  * Formatted output with indentation using a pointer to a list of arguments (参数列表指针形式的带缩进格式化输出).
+ *
+ * Prototype: `void zltoutvf(ZLTOUTTYPE sout, int indent, const TCHAR* fmt, va_list argptr);;`
  *
  * @param[in]	sout	Output stream (输出流).
  * @param[in]	indent	Indent (缩进).
