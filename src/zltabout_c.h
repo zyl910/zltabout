@@ -32,6 +32,10 @@
  * @since	@ref GROUP_ZLTABOUT 1.0
  */
 
+
+#ifndef __ZLTABOUT_C_H_INCLUDED
+#define __ZLTABOUT_C_H_INCLUDED
+
 #include <stdarg.h>
 #include <stdio.h>
 #include <wchar.h>
@@ -43,13 +47,30 @@ extern "C" {
 #define ZLTOUTTYPEA	FILE*
 #define ZLTOUTTYPEW	FILE*
 
-#define ZLTOUTCA(sout, ch)	fputc(ch, sout)
-#define ZLTOUTCW(sout, ch)	fputwc(ch, sout)
+#define ZLTOUTCA(sout, ch)	zltabout_c_outcA(sout, ch)
+#define ZLTOUTCW(sout, ch)	zltabout_c_outcW(sout, ch)
 #define ZLTOUTVFA(sout, indent, fmt, argptr)	zltabout_c_outvfA(sout, indent, fmt, argptr)
 #define ZLTOUTVFW(sout, indent, fmt, argptr)	zltabout_c_outvfW(sout, indent, fmt, argptr)
 #define ZLTOUTFA	zltabout_c_outfA
 #define ZLTOUTFW	zltabout_c_outfW
 
+/** Writes a narrow character to a stream (向流输出一个窄字符).
+ *
+ * @param[in]	sout	Output stream (输出流).
+ * @param[in]	ch	character (字符).
+ * @return	Each of these functions returns the character written. A return value of EOF indicates an error.
+ *
+ */
+#define zltabout_c_outcA(sout, ch)	fputc(ch, sout)
+
+/** Writes a wide character to a stream (向流输出一个宽字符).
+ *
+ * @param[in]	sout	Output stream (输出流).
+ * @param[in]	ch	character (字符).
+ * @return	Each of these functions returns the character written. A return value of WEOF indicates an error.
+ *
+ */
+#define zltabout_c_outcW(sout, ch)	fputwc(ch, sout)
 
 /** Formatted output with indentation using a pointer to a list of arguments (参数列表指针形式的带缩进格式化输出窄字符串版).
  *
@@ -90,6 +111,8 @@ extern void zltabout_c_outfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, .
 #if defined __cplusplus
 };
 #endif
+
+#endif // #ifndef __ZLTABOUT_C_H_INCLUDED
 
 /** @} */	// @addtogroup GROUP_ZLTABOUT
 /** @} */	// @addtogroup GROUP_ZYLLIBC

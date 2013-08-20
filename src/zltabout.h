@@ -142,7 +142,7 @@
 #elif ZLTABOUTMODE==ZLTABOUTMODE_C
 	#include "zltabout_c.h"
 #elif ZLTABOUTMODE==ZLTABOUTMODE_CPP
-	#include "zltabout_cpp.h"
+	#include "zltabout_cpp.hpp"
 #else	// #if ZLTABOUTMODE==ZLTABOUTMODE_DUMMY
 	#ifndef ZLTABOUT_OTHER_MODE
 		#error Error ZLTABOUTMODE !
@@ -164,8 +164,11 @@
 /** @def ZLTOUTCA
  * Writes a narrow character to a stream (向流输出一个窄字符).
  *
+ * Prototype: `int zltoutcA(ZLTOUTTYPEA sout, char ch);`
+ *
  * @param[in]	sout	Output stream (输出流).
  * @param[in]	ch	character (字符).
+ * @return	Each of these functions returns the character written. A return value of EOF indicates an error.
  *
  * @see ZLTOUTC, ZLTOUTCW
  */
@@ -173,14 +176,19 @@
 /** @def ZLTOUTCW
  * Writes a wide character to a stream (向流输出一个宽字符).
  *
+ * Prototype: `wint_t zltoutcW(ZLTOUTTYPEW sout, wchar_t ch);`
+ *
  * @param[in]	sout	Output stream (输出流).
  * @param[in]	ch	character (字符).
+ * @return	Each of these functions returns the character written. A return value of WEOF indicates an error.
  *
  * @see ZLTOUTC, ZLTOUTCA
  */
 
 /** @def ZLTOUTVFA
  * Formatted output with indentation using a pointer to a list of arguments (参数列表指针形式的带缩进格式化输出窄字符串版).
+ *
+ * Prototype: `void zltoutvfA(ZLTOUTTYPEA sout, int indent, const char* fmt, va_list argptr);;`
  *
  * @param[in]	sout	Output stream (输出流).
  * @param[in]	indent	Indent (缩进).
@@ -192,6 +200,8 @@
 
 /** @def ZLTOUTVFW
  * Formatted output with indentation using a pointer to a list of arguments (参数列表指针形式的带缩进格式化输出宽字符串版).
+ *
+ * Prototype: `void zltoutvfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, va_list argptr);;`
  *
  * @param[in]	sout	Output stream (输出流).
  * @param[in]	indent	Indent (缩进).

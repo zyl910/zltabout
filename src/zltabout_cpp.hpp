@@ -27,10 +27,14 @@
  */
 
 /**
- * @file	zltabout_cpp.h
+ * @file	zltabout_cpp.hpp
  * @brief	zltabout: C++ mode (C++模式的zltabout) .
  * @since	@ref GROUP_ZLTABOUT 1.0
  */
+
+
+#ifndef __ZLTABOUT_CPP_HPP_INCLUDED
+#define __ZLTABOUT_CPP_HPP_INCLUDED
 
 #include <ostream>
 
@@ -49,7 +53,22 @@ extern "C" {
 #define ZLTOUTFA	zltabout_cpp_outfA
 #define ZLTOUTFW	zltabout_cpp_outfW
 
+/** Writes a narrow character to a stream (向流输出一个窄字符).
+ *
+ * @param[in]	sout	Output stream (输出流).
+ * @param[in]	ch	character (字符).
+ * @return	Each of these functions returns the character written. A return value of EOF indicates an error.
+ *
+ */
 extern int zltabout_cpp_outcA(ZLTOUTTYPEA sout, char ch);
+
+/** Writes a wide character to a stream (向流输出一个宽字符).
+ *
+ * @param[in]	sout	Output stream (输出流).
+ * @param[in]	ch	character (字符).
+ * @return	Each of these functions returns the character written. A return value of WEOF indicates an error.
+ *
+ */
 extern wint_t zltabout_cpp_outcW(ZLTOUTTYPEW sout, wchar_t ch);
 
 /** Formatted output with indentation using a pointer to a list of arguments (参数列表指针形式的带缩进格式化输出窄字符串版).
@@ -91,6 +110,8 @@ extern void zltabout_cpp_outfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt,
 #if defined __cplusplus
 };
 #endif
+
+#endif // #ifndef __ZLTABOUT_CPP_HPP_INCLUDED
 
 /** @} */	// @addtogroup GROUP_ZLTABOUT
 /** @} */	// @addtogroup GROUP_ZYLLIBC
