@@ -105,6 +105,12 @@
  * @file	zltabout.h
  * @brief	Formatting output with indentation (带缩进的格式化输出) .
  * @since	@ref GROUP_ZLTABOUT 1.0
+ *
+ * ## Input macros (输入配置性宏)
+ *
+ * Macros:
+ * * @ref ZLTABOUTMODE: Output Mode (输出模式).
+ *
  */
 
 

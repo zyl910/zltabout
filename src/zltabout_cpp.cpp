@@ -30,6 +30,12 @@
  * @file	zltabout_cpp.cpp
  * @brief	[source file] zltabout: C++ mode (C++模式的zltabout) .
  * @since	@ref GROUP_ZLTABOUT 1.0
+ *
+ * ## Input macros (输入配置性宏)
+ *
+ * Macros:
+ * * @ref ZLTABOUT_CPP_CRT_SECURE: Security Enhancements in the CRT.
+ *
  */
 
 #include <memory.h>
@@ -40,7 +46,7 @@
 
 #include "zltabout_cpp.hpp"
 
-#define ZLTABOUT_CPP_BUFSIZE	4096	// buffer size.
+#define ZLTABOUT_CPP_BUFSIZE	4096	//!< buffer size.
 
 /** @def ZLTABOUT_CPP_CRT_SECURE
  * [#if] Security Enhancements in the CRT.
@@ -73,11 +79,13 @@ wint_t zltabout_cpp_outcW(ZLTOUTTYPEW sout, wchar_t ch) {
 
 void zltabout_cpp_outsA(ZLTOUTTYPEA sout, const char* str, size_t cch) {
 	if (NULL==sout) return;
+	if (NULL==str) return;
 	sout->write(str, (std::streamsize)cch);
 }
 
 void zltabout_cpp_outsW(ZLTOUTTYPEW sout, const wchar_t* str, size_t cch) {
 	if (NULL==sout) return;
+	if (NULL==str) return;
 	sout->write(str, (std::streamsize)cch);
 }
 

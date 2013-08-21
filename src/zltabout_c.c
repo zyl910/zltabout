@@ -39,6 +39,7 @@
 void zltabout_c_outsA(ZLTOUTTYPEA sout, const char* str, size_t cch) {
 	size_t i;
 	if (NULL==sout) return;
+	if (NULL==str) return;
 	for(i=0; i<cch; ++i) {
 		zltabout_c_outcA(sout, str[i]);
 	}
@@ -47,6 +48,7 @@ void zltabout_c_outsA(ZLTOUTTYPEA sout, const char* str, size_t cch) {
 void zltabout_c_outsW(ZLTOUTTYPEW sout, const wchar_t* str, size_t cch) {
 	size_t i;
 	if (NULL==sout) return;
+	if (NULL==str) return;
 	for(i=0; i<cch; ++i) {
 		zltabout_c_outcW(sout, str[i]);
 	}
