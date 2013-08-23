@@ -42,7 +42,10 @@
 #include <stddef.h>
 #include <stdio.h>
 #include <string.h>
+
+#ifndef ZL_NOWIDE
 #include <wchar.h>
+#endif
 
 #include "zltabout_cpp.hpp"
 
@@ -69,6 +72,7 @@ int zltabout_cpp_outcA(ZLTOUTTYPEA sout, char ch) {
 	return rt;
 }
 
+#ifndef ZL_NOWIDE
 wint_t zltabout_cpp_outcW(ZLTOUTTYPEW sout, wchar_t ch) {
 	wint_t rt = WEOF;
 	if (NULL!=sout) {
@@ -77,6 +81,7 @@ wint_t zltabout_cpp_outcW(ZLTOUTTYPEW sout, wchar_t ch) {
 	}
 	return rt;
 }
+#endif
 
 void zltabout_cpp_outsA(ZLTOUTTYPEA sout, const char* str, size_t cch) {
 	if (NULL==sout) return;
@@ -84,11 +89,13 @@ void zltabout_cpp_outsA(ZLTOUTTYPEA sout, const char* str, size_t cch) {
 	sout->write(str, (std::streamsize)cch);
 }
 
+#ifndef ZL_NOWIDE
 void zltabout_cpp_outsW(ZLTOUTTYPEW sout, const wchar_t* str, size_t cch) {
 	if (NULL==sout) return;
 	if (NULL==str) return;
 	sout->write(str, (std::streamsize)cch);
 }
+#endif
 
 /// [Core] Formatted output narrow string (格式化窄字符串并输出).
 static void zltabout_cpp_outvfA_coreformat(ZLTOUTTYPEA sout, const char* fmt, va_list argptr) {
@@ -137,6 +144,7 @@ void zltabout_cpp_outvfA(ZLTOUTTYPEA sout, int indent, const char* fmt, va_list 
 	sout->setstate(sout->rdstate() & ~std::ios::failbit);	// clear failbit.
 }
 
+#ifndef ZL_NOWIDE
 /// [Core] Formatted output wide string (格式化宽字符串并输出).
 static void zltabout_cpp_outvfW_coreformat(ZLTOUTTYPEW sout, const wchar_t* fmt, va_list argptr) {
 	wchar_t buf[ZLTABOUT_CPP_BUFSIZE];
@@ -189,6 +197,7 @@ void zltabout_cpp_outvfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, va_li
 	}
 	sout->setstate(sout->rdstate() & ~std::ios::failbit);	// clear failbit.
 }
+#endif
 
 void zltabout_cpp_outfA(ZLTOUTTYPEA sout, int indent, const char* fmt, ...) {
 	va_list argptr;
@@ -198,6 +207,7 @@ void zltabout_cpp_outfA(ZLTOUTTYPEA sout, int indent, const char* fmt, ...) {
 	va_end(argptr);
 }
 
+#ifndef ZL_NOWIDE
 void zltabout_cpp_outfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, ...) {
 	va_list argptr;
 	if (NULL==sout) return;
@@ -205,6 +215,7 @@ void zltabout_cpp_outfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, ...) {
 	zltabout_cpp_outvfW(sout, indent, fmt, argptr);
 	va_end(argptr);
 }
+#endif
 
 /** @} */	// @addtogroup GROUP_ZLTABOUT
 /** @} */	// @addtogroup GROUP_ZYLLIBC

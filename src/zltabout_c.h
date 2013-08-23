@@ -65,6 +65,7 @@ extern "C" {
  */
 #define zltabout_c_outcA(sout, ch)	fputc(ch, sout)
 
+#ifndef ZL_NOWIDE
 /** Writes a wide character to a stream (向流输出一个宽字符).
  *
  * @param[in]	sout	Output stream (输出流).
@@ -73,6 +74,7 @@ extern "C" {
  *
  */
 #define zltabout_c_outcW(sout, ch)	fputwc(ch, sout)
+#endif
 
 /** Write a narrow string to a stream (向流输出窄字符串).
  *
@@ -83,6 +85,7 @@ extern "C" {
  */
 extern void zltabout_c_outsA(ZLTOUTTYPEA sout, const char* str, size_t cch);
 
+#ifndef ZL_NOWIDE
 /** Write a wide string to a stream (向流输出宽字符串).
  *
  * @param[in]	sout	Output stream (输出流).
@@ -91,6 +94,7 @@ extern void zltabout_c_outsA(ZLTOUTTYPEA sout, const char* str, size_t cch);
  *
  */
 extern void zltabout_c_outsW(ZLTOUTTYPEW sout, const wchar_t* str, size_t cch);
+#endif
 
 /** Formatted output with indentation using a pointer to a list of arguments (参数列表指针形式的带缩进格式化输出窄字符串版).
  *
@@ -101,6 +105,7 @@ extern void zltabout_c_outsW(ZLTOUTTYPEW sout, const wchar_t* str, size_t cch);
  */
 extern void zltabout_c_outvfA(ZLTOUTTYPEA sout, int indent, const char* fmt, va_list argptr);
 
+#ifndef ZL_NOWIDE
 /** Formatted output with indentation using a pointer to a list of arguments (参数列表指针形式的带缩进格式化输出宽字符串版).
  *
  * @param[in]	sout	Output stream (输出流).
@@ -109,6 +114,7 @@ extern void zltabout_c_outvfA(ZLTOUTTYPEA sout, int indent, const char* fmt, va_
  * @param[in]	argptr	Pointer to list of arguments (参数列表指针).
  */
 extern void zltabout_c_outvfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, va_list argptr);
+#endif
 
 /** Formatted output with indentation (带缩进格式化输出窄字符串版).
  *
@@ -118,6 +124,7 @@ extern void zltabout_c_outvfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, 
  */
 extern void zltabout_c_outfA(ZLTOUTTYPEA sout, int indent, const char* fmt, ...);
 
+#ifndef ZL_NOWIDE
 /** Formatted output with indentation (带缩进格式化输出宽字符串版).
  *
  * @param[in]	sout	Output stream (输出流).
@@ -125,6 +132,7 @@ extern void zltabout_c_outfA(ZLTOUTTYPEA sout, int indent, const char* fmt, ...)
  * @param[in]	fmt	Format specification (格式化串).
  */
 extern void zltabout_c_outfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, ...);
+#endif
 
 
 

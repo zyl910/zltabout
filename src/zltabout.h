@@ -45,6 +45,12 @@
  * 
  * Example code:
  * 
+ *
+ * ### Input macros (输入配置性宏)
+ *
+ * Macros:
+ * * ZL_NOWIDE: No definition wide char functions (不定义宽字符版函数) . Used to improve the compatibility , e.g. bcb6 (用于提高兼容性, 例如bcb6).
+ * * @ref ZLTABOUTMODE: Output Mode (输出模式). values: 0(@ref ZLTABOUTMODE_DUMMY), 1(@ref ZLTABOUTMODE_C), 2(@ref ZLTABOUTMODE_CPP) .
  * 
  * 
  *
@@ -105,11 +111,6 @@
  * @file	zltabout.h
  * @brief	Formatting output with indentation (带缩进的格式化输出) .
  * @since	@ref GROUP_ZLTABOUT 1.0
- *
- * ## Input macros (输入配置性宏)
- *
- * Macros:
- * * @ref ZLTABOUTMODE: Output Mode (输出模式).
  *
  */
 

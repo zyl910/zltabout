@@ -45,6 +45,7 @@ void zltabout_c_outsA(ZLTOUTTYPEA sout, const char* str, size_t cch) {
 	}
 }
 
+#ifndef ZL_NOWIDE
 void zltabout_c_outsW(ZLTOUTTYPEW sout, const wchar_t* str, size_t cch) {
 	size_t i;
 	if (NULL==sout) return;
@@ -53,6 +54,7 @@ void zltabout_c_outsW(ZLTOUTTYPEW sout, const wchar_t* str, size_t cch) {
 		zltabout_c_outcW(sout, str[i]);
 	}
 }
+#endif
 
 void zltabout_c_outvfA(ZLTOUTTYPEA sout, int indent, const char* fmt, va_list argptr) {
 	int i;
@@ -65,6 +67,7 @@ void zltabout_c_outvfA(ZLTOUTTYPEA sout, int indent, const char* fmt, va_list ar
 	}
 }
 
+#ifndef ZL_NOWIDE
 void zltabout_c_outvfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, va_list argptr) {
 	int i;
 	if (NULL==sout) return;
@@ -75,6 +78,7 @@ void zltabout_c_outvfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, va_list
 		vfwprintf(sout, fmt, argptr);
 	}
 }
+#endif
 
 void zltabout_c_outfA(ZLTOUTTYPEA sout, int indent, const char* fmt, ...) {
 	va_list argptr;
@@ -84,6 +88,7 @@ void zltabout_c_outfA(ZLTOUTTYPEA sout, int indent, const char* fmt, ...) {
 	va_end(argptr);
 }
 
+#ifndef ZL_NOWIDE
 void zltabout_c_outfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, ...) {
 	va_list argptr;
 	if (NULL==sout) return;
@@ -91,6 +96,7 @@ void zltabout_c_outfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, ...) {
 	zltabout_c_outvfW(sout, indent, fmt, argptr);
 	va_end(argptr);
 }
+#endif
 
 /** @} */	// @addtogroup GROUP_ZLTABOUT
 /** @} */	// @addtogroup GROUP_ZYLLIBC
