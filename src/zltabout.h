@@ -39,6 +39,8 @@
  * Features (特性):
  * * Formatting output with indentation (带缩进的格式化输出) .
  * * Same code on C FILE and C++ stream (能以相同的代码绑定到 C FILE 或 C++流).
+ * * Support (支持 char/wchat_t/TCHAR) .
+ *
  * 
  * Dependent projects (依赖项目):
  * 
@@ -296,7 +298,7 @@
  * 
  * ## Change history (变更日志)
  * 
- * [2013-08-23] V1.0
+ * [2013-08-23] V1.0: http://www.cnblogs.com/zyl910/p/zltabout.html
  *
  * * Release v1.0 (发布1.0版).
  *
