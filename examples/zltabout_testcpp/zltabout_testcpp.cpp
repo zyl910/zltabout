@@ -106,6 +106,9 @@ int _tmain(int argc, TCHAR* argv[])
 {
 	ZLTOUTTYPE sout;
 
+#ifdef __BORLANDC__
+        _borland_init_iostreams();
+#endif
 	// show.
 #if ZLTABOUTMODE==ZLTABOUTMODE_DUMMY
 	sout = (ZLTOUTTYPE)NULL;

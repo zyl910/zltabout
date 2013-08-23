@@ -38,6 +38,8 @@
 
 #include <ostream>
 
+#include <stdarg.h>
+
 
 #if defined __cplusplus
 extern "C" {

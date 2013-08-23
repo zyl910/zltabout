@@ -39,8 +39,8 @@
  */
 
 #include <memory.h>
-#include <stdarg.h>
 #include <stddef.h>
+#include <stdio.h>
 #include <string.h>
 #include <wchar.h>
 
@@ -96,6 +96,8 @@ static void zltabout_cpp_outvfA_coreformat(ZLTOUTTYPEA sout, const char* fmt, va
 	memset(buf, 0, ZLTABOUT_CPP_BUFSIZE);
 #if ZLTABOUT_CPP_CRT_SECURE
 	vsprintf_s(buf, ZLTABOUT_CPP_BUFSIZE-1, fmt, argptr);
+#elif defined(_MSC_VER)
+	_vsnprintf(buf, ZLTABOUT_CPP_BUFSIZE-1, fmt, argptr);
 #else
 	vsnprintf(buf, ZLTABOUT_CPP_BUFSIZE-1, fmt, argptr);
 #endif
@@ -141,6 +143,14 @@ static void zltabout_cpp_outvfW_coreformat(ZLTOUTTYPEW sout, const wchar_t* fmt,
 	wmemset(buf, 0, ZLTABOUT_CPP_BUFSIZE);
 #if ZLTABOUT_CPP_CRT_SECURE
 	vswprintf_s(buf, ZLTABOUT_CPP_BUFSIZE-1, fmt, argptr);
+#elif defined(_MSC_VER)
+	_vsnwprintf(buf, ZLTABOUT_CPP_BUFSIZE-1, fmt, argptr);
+#elif defined(__GNUC__)
+	#if defined(__STRICT_ANSI__)
+		vswprintf(buf, ZLTABOUT_CPP_BUFSIZE-1, fmt, argptr);
+	#else
+		vswprintf(buf, fmt, argptr);
+	#endif
 #else
 	vswprintf(buf, ZLTABOUT_CPP_BUFSIZE-1, fmt, argptr);
 #endif
