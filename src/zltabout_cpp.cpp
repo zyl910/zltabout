@@ -154,10 +154,10 @@ static void zltabout_cpp_outvfW_coreformat(ZLTOUTTYPEW sout, const wchar_t* fmt,
 #elif defined(_MSC_VER)
 	_vsnwprintf(buf, ZLTABOUT_CPP_BUFSIZE-1, fmt, argptr);
 #elif defined(__GNUC__)
-	#if defined(__STRICT_ANSI__)
-		vswprintf(buf, ZLTABOUT_CPP_BUFSIZE-1, fmt, argptr);
-	#else
+	#if defined(__MINGW32__) && !defined(__STRICT_ANSI__)
 		vswprintf(buf, fmt, argptr);
+	#else
+		vswprintf(buf, ZLTABOUT_CPP_BUFSIZE-1, fmt, argptr);
 	#endif
 #else
 	vswprintf(buf, ZLTABOUT_CPP_BUFSIZE-1, fmt, argptr);
