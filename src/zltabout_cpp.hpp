@@ -46,14 +46,14 @@ extern "C" {
 #define ZLTOUTTYPEA	std::basic_ostream<char>*
 #define ZLTOUTTYPEW	std::basic_ostream<wchar_t>*
 
-#define ZLTOUTCA(sout, ch)	zltabout_cpp_outcA(sout, ch)
-#define ZLTOUTCW(sout, ch)	zltabout_cpp_outcW(sout, ch)
-#define ZLTOUTSA(sout, str, cch)	zltabout_cpp_outsA(sout, str, cch)
-#define ZLTOUTSW(sout, str, cch)	zltabout_cpp_outsW(sout, str, cch)
-#define ZLTOUTVFA(sout, indent, fmt, argptr)	zltabout_cpp_outvfA(sout, indent, fmt, argptr)
-#define ZLTOUTVFW(sout, indent, fmt, argptr)	zltabout_cpp_outvfW(sout, indent, fmt, argptr)
-#define ZLTOUTFA	zltabout_cpp_outfA
-#define ZLTOUTFW	zltabout_cpp_outfW
+#define zltoutcA(sout, ch)	zltabout_cpp_outcA(sout, ch)
+#define zltoutcW(sout, ch)	zltabout_cpp_outcW(sout, ch)
+#define zltoutsA(sout, str, cch)	zltabout_cpp_outsA(sout, str, cch)
+#define zltoutsW(sout, str, cch)	zltabout_cpp_outsW(sout, str, cch)
+#define zltoutvfA(sout, indent, fmt, argptr)	zltabout_cpp_outvfA(sout, indent, fmt, argptr)
+#define zltoutvfW(sout, indent, fmt, argptr)	zltabout_cpp_outvfW(sout, indent, fmt, argptr)
+#define zltoutfA	zltabout_cpp_outfA
+#define zltoutfW	zltabout_cpp_outfW
 
 /** Writes a narrow character to a stream (向流输出一个窄字符).
  *

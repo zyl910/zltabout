@@ -139,14 +139,14 @@
 #if ZLTABOUTMODE==ZLTABOUTMODE_DUMMY
 	#define ZLTOUTTYPEA	void*
 	#define ZLTOUTTYPEW	void*
-	#define ZLTOUTCA(sout, ch)
-	#define ZLTOUTCW(sout, ch)
-	#define ZLTOUTSA(sout, str, cch)
-	#define ZLTOUTSW(sout, str, cch)
-	#define ZLTOUTVFA(sout, indent, fmt, argptr)
-	#define ZLTOUTVFW(sout, indent, fmt, argptr)
-	#define ZLTOUTFA(args)
-	#define ZLTOUTFW(args)
+	#define zltoutcA(sout, ch)
+	#define zltoutcW(sout, ch)
+	#define zltoutsA(sout, str, cch)
+	#define zltoutsW(sout, str, cch)
+	#define zltoutvfA(sout, indent, fmt, argptr)
+	#define zltoutvfW(sout, indent, fmt, argptr)
+	#define zltoutfA(args)
+	#define zltoutfW(args)
 #elif ZLTABOUTMODE==ZLTABOUTMODE_C
 	#include "zltabout_c.h"
 #elif ZLTABOUTMODE==ZLTABOUTMODE_CPP
@@ -169,7 +169,7 @@
  * @see ZLTOUTTYPE, ZLTOUTTYPEA
  */
 
-/** @def ZLTOUTCA
+/** @def zltoutcA
  * Writes a narrow character to a stream (向流输出一个窄字符).
  *
  * Prototype: `int zltoutcA(ZLTOUTTYPEA sout, char ch);`
@@ -178,10 +178,10 @@
  * @param[in]	ch	Character (字符).
  * @return	Each of these functions returns the character written. A return value of EOF indicates an error.
  *
- * @see ZLTOUTC, ZLTOUTCW
+ * @see zltoutc, zltoutcW
  */
 
-/** @def ZLTOUTCW
+/** @def zltoutcW
  * Writes a wide character to a stream (向流输出一个宽字符).
  *
  * Prototype: `wint_t zltoutcW(ZLTOUTTYPEW sout, wchar_t ch);`
@@ -190,10 +190,10 @@
  * @param[in]	ch	Character (字符).
  * @return	Each of these functions returns the character written. A return value of WEOF indicates an error.
  *
- * @see ZLTOUTC, ZLTOUTCA
+ * @see zltoutc, zltoutcA
  */
 
-/** @def ZLTOUTSA
+/** @def zltoutsA
  * Write a narrow string to a stream (向流输出窄字符串).
  *
  * Prototype: `void zltoutsA(ZLTOUTTYPEA sout, const char* str, size_t cch);`
@@ -202,10 +202,10 @@
  * @param[in]	str	Output string (输出字符串).
  * @param[in]	cch	Count of characters (字符数).
  *
- * @see ZLTOUTS, ZLTOUTSW
+ * @see zltouts, zltoutsW
  */
 
-/** @def ZLTOUTSW
+/** @def zltoutsW
  * Write a wide string to a stream (向流输出宽字符串).
  *
  * Prototype: `void zltoutsW(ZLTOUTTYPEW sout, const wchar_t* str, size_t cch);`
@@ -214,10 +214,10 @@
  * @param[in]	str	Output string (输出字符串).
  * @param[in]	cch	Count of characters (字符数).
  *
- * @see ZLTOUTS, ZLTOUTSA
+ * @see zltouts, zltoutsA
  */
 
-/** @def ZLTOUTVFA
+/** @def zltoutvfA
  * Formatted output with indentation using a pointer to a list of arguments (参数列表指针形式的带缩进格式化输出窄字符串版).
  *
  * Prototype: `void zltoutvfA(ZLTOUTTYPEA sout, int indent, const char* fmt, va_list argptr);;`
@@ -227,10 +227,10 @@
  * @param[in]	fmt	Format specification (格式化串).
  * @param[in]	argptr	Pointer to list of arguments (参数列表指针).
  *
- * @see ZLTOUTVF, ZLTOUTVFW
+ * @see zltoutvf, zltoutvfW
  */
 
-/** @def ZLTOUTVFW
+/** @def zltoutvfW
  * Formatted output with indentation using a pointer to a list of arguments (参数列表指针形式的带缩进格式化输出宽字符串版).
  *
  * Prototype: `void zltoutvfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, va_list argptr);;`
@@ -240,10 +240,10 @@
  * @param[in]	fmt	Format specification (格式化串).
  * @param[in]	argptr	Pointer to list of arguments (参数列表指针).
  *
- * @see ZLTOUTVF, ZLTOUTVFA
+ * @see zltoutvf, zltoutvfA
  */
 
-/** @def ZLTOUTFA
+/** @def zltoutfA
  * Formatted output with indentation (带缩进格式化输出窄字符串版).
  *
  * Prototype: `void zltoutfA(ZLTOUTTYPEA sout, int indent, const char* fmt, ...);`
@@ -252,10 +252,10 @@
  * @param[in]	indent	Indent (缩进).
  * @param[in]	fmt	Format specification (格式化串).
  *
- * @see ZLTOUTF, ZLTOUTFW
+ * @see zltoutf, zltoutfW
  */
 
-/** @def ZLTOUTFW
+/** @def zltoutfW
  * Formatted output with indentation (带缩进格式化输出宽字符串版).
  *
  * Prototype: `void zltoutfW(ZLTOUTTYPEW sout, int indent, const wchar_t* fmt, ...);`
@@ -264,23 +264,23 @@
  * @param[in]	indent	Indent (缩进).
  * @param[in]	fmt	Format specification (格式化串).
  *
- * @see ZLTOUTF, ZLTOUTFA
+ * @see zltoutf, zltoutfA
  */
 
 
 // == TCHAR marco ==
 #ifdef UNICODE
 	#define ZLTOUTTYPE	ZLTOUTTYPEW
-	#define ZLTOUTC(sout, ch)	ZLTOUTCW(sout, ch)
-	#define ZLTOUTS(sout, str, cch)	ZLTOUTSW(sout, str, cch)
-	#define ZLTOUTVF(sout, indent, fmt, argptr)	ZLTOUTVFW(sout, fmt, argptr)
-	#define ZLTOUTF	ZLTOUTFW
+	#define zltoutc(sout, ch)	zltoutcW(sout, ch)
+	#define zltouts(sout, str, cch)	zltoutsW(sout, str, cch)
+	#define zltoutvf(sout, indent, fmt, argptr)	zltoutvfW(sout, fmt, argptr)
+	#define zltoutf	zltoutfW
 #else	// #ifdef UNICODE
 	#define ZLTOUTTYPE	ZLTOUTTYPEA
-	#define ZLTOUTC(sout, ch)	ZLTOUTCA(sout, ch)
-	#define ZLTOUTS(sout, str, cch)	ZLTOUTSA(sout, str, cch)
-	#define ZLTOUTVF(sout, indent, fmt, argptr)	ZLTOUTVFA(sout, fmt, argptr)
-	#define ZLTOUTF	ZLTOUTFA
+	#define zltoutc(sout, ch)	zltoutcA(sout, ch)
+	#define zltouts(sout, str, cch)	zltoutsA(sout, str, cch)
+	#define zltoutvf(sout, indent, fmt, argptr)	zltoutvfA(sout, fmt, argptr)
+	#define zltoutf	zltoutfA
 #endif	// #ifdef UNICODE
 
 /** @def ZLTOUTTYPE
@@ -289,7 +289,7 @@
  * @see ZLTOUTTYPEA, ZLTOUTTYPEW
  */
 
-/** @def ZLTOUTC
+/** @def zltoutc
  * Writes a character to a stream (向流输出一个字符).
  *
  * Prototype: `int zltoutc(ZLTOUTTYPE sout, TCHAR ch);`
@@ -298,10 +298,10 @@
  * @param[in]	ch	Character (字符).
  * @return	Each of these functions returns the character written. A return value of EOF/WEOF indicates an error.
  *
- * @see ZLTOUTCA, ZLTOUTCW
+ * @see zltoutcA, zltoutcW
  */
 
-/** @def ZLTOUTS
+/** @def zltouts
  * Write a string to a stream (向流输出字符串).
  *
  * Prototype: `void zltouts(ZLTOUTTYPE sout, const TCHAR* str, size_t cch);`
@@ -310,10 +310,10 @@
  * @param[in]	str	Output string (输出字符串).
  * @param[in]	cch	Count of characters (字符数).
  *
- * @see ZLTOUTSA, ZLTOUTSW
+ * @see zltoutsA, zltoutsW
  */
 
-/** @def ZLTOUTVF
+/** @def zltoutvf
  * Formatted output with indentation using a pointer to a list of arguments (参数列表指针形式的带缩进格式化输出).
  *
  * Prototype: `void zltoutvf(ZLTOUTTYPE sout, int indent, const TCHAR* fmt, va_list argptr);;`
@@ -323,10 +323,10 @@
  * @param[in]	fmt	Format specification (格式化串).
  * @param[in]	argptr	Pointer to list of arguments (参数列表指针).
  *
- * @see ZLTOUTVFA, ZLTOUTVFW
+ * @see zltoutvfA, zltoutvfW
  */
 
-/** @def ZLTOUTF
+/** @def zltoutf
  * Formatted output with indentation (带缩进格式化输出).
  *
  * Prototype: `void zltoutf(ZLTOUTTYPE sout, int indent, const TCHAR* fmt, ...);`
@@ -335,7 +335,7 @@
  * @param[in]	indent	Indent (缩进).
  * @param[in]	fmt	Format specification (格式化串).
  *
- * @see ZLTOUTFA, ZLTOUTFW
+ * @see zltoutfA, zltoutfW
  */
 
 #endif // #ifndef __ZLTABOUT_H_INCLUDED

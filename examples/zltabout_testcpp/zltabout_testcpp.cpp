@@ -89,15 +89,16 @@ using namespace std;
  */
 #define MYTESTMODE	2
 
+
 /// Do Test.
 void dotest(ZLTOUTTYPE sout, int indent) {
 	static const TCHAR strEnd[] = _T("(END)");
 	int i;
 	for(i=0; i<3; ++i) {
-		ZLTOUTF(sout, indent+i, _T("indent %d\n"), i);
+		zltoutf(sout, indent+i, _T("indent %d\n"), i);
 	}
-	ZLTOUTS(sout, strEnd, sizeof(strEnd)/sizeof(strEnd[0])-1);
-	ZLTOUTC(sout, _T('\n'));
+	zltouts(sout, strEnd, sizeof(strEnd)/sizeof(strEnd[0])-1);
+	zltoutc(sout, _T('\n'));
 }
 
 /// main .

@@ -59,6 +59,7 @@
 	#endif	// #if defined(_MSC_VER) && (_MSC_VER>=1400)	// VC2005
 #endif	// #ifndef ZLTABOUT_CPP_CRT_SECURE
 
+
 int zltabout_cpp_outcA(ZLTOUTTYPEA sout, char ch) {
 	int rt = EOF;
 	if (NULL!=sout) {

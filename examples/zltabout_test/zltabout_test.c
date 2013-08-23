@@ -86,10 +86,10 @@ int _tmain(int argc, TCHAR* argv[])
 	// show.
 	sout = (ZLTOUTTYPE)stdout;
 	for(i=0; i<3; ++i) {
-		ZLTOUTF(sout, i, _T("indent %d\n"), i);
+		zltoutf(sout, i, _T("indent %d\n"), i);
 	}
-	ZLTOUTS(sout, strEnd, sizeof(strEnd)/sizeof(strEnd[0])-1);
-	ZLTOUTC(sout, _T('\n'));
+	zltouts(sout, strEnd, sizeof(strEnd)/sizeof(strEnd[0])-1);
+	zltoutc(sout, _T('\n'));
 
 	return 0;
 }
